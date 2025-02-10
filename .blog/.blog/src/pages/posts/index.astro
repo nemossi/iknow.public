@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogRecentCard from '@components/blog/BlogRecentCard.astro'
+import BlogSelectedArticle from '@components/blog/BlogSelectedArticle.astro'
+import MainSection from '@components/ui/sections/MainSection.astro'
+import { SITE } from '@/config'
+
+const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
+    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+)
+
+const selectedPosts: CollectionEntry<'posts'>[] = posts.filter(p => p.data.selected)
+const description = 'Here are some articles that Nemossi believes are not bad, hope you enjoy them.'
+const URL = Astro.url.href
+---
+
+<BaseLayout
+    title="所有博客"
+    description={description}
+    structuredData={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'inLanguage': 'en-US',
+        '@id': URL,
+        'url': URL,
+        'name': `所有博客 - ${SITE.title}`,
+        'description': description,
+        'isPartOf': {
+            '@type': 'WebSite',
+            'url': SITE.url,
+            'name': SITE.title,
+            'description': SITE.description,
+        },
+    }}
+>
+    <MainSection
+        title="写下心中所想"
+        subTitle="人生就是一场即兴表演，没有彩排，但你可以随时给自己加戏！"
+        btnExists={true}
+        btnTitle="所有文章"
+        btnURL="/timeline"
+    />
+
+    <BlogRecentCard blogs={posts} />
+    <BlogSelectedArticle posts={selectedPosts} />
+</BaseLayout>
+

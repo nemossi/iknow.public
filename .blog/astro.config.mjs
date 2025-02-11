@@ -21,6 +21,7 @@ export default defineConfig
 (
     {
         site: SITE.url,
+        base: SITE.base,
         image:
         {
             // If you don't want to optimize images during the BUILD process please set the ASTRO_IMAGE_OPTIMIZE environment variable to false

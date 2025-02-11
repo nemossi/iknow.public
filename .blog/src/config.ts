@@ -3,6 +3,7 @@ import type { NavigationLink, Site } from './types.ts'
 export const SITE: Site = {
     author: 'Nemossi',
     url: 'https://nemossi.github.io/iknow.public/',
+    base: '/iknow.public/',
     title: 'Nemossi的无人区',
     description: 'Nemossi的个人博客',
     shortDescription: '',

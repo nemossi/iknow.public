@@ -2,6 +2,7 @@ export interface Site {
     title: string
     author: string
     url: string
+    base: string
     description: string
     shortDescription: string
 }

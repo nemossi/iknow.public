@@ -133,6 +133,66 @@ p code {
 
 TODO
 
+## 评论
+
+推荐使用`Giscus`评论系统，其特点如下：
+- 无需注册，支持匿名评论
+- 支持Github账号登录
+- 支持多种主题风格
+
+使用Giscus评论系统的前提条件有：
+- 公开的[Github代码仓库](https://docs.github.com/zh/repositories/creating-and-managing-repositories/quickstart-for-repositories)，可直接用Astro博客网站的源码仓库
+- 启用[Github Discussions](https://docs.github.com/zh/discussions/quickstart)功能
+
+### 配置Github仓库
+
+在Github讨论区里增加一个新分类，创建信息如下：
+
+| 条目 | 配置 | 备注 |
+| :-- | :-- | :-- |
+| 名称, Name | Blog Post Comments | - |
+| 描述, Description | for Giscus Comments on Astro Blog Posts | (可选) |
+| 格式, Format | Open-ended discussion | - |
+
+访问[giscus](https://github.com/apps/giscus)，根据提示安装并授权Giscus应用访问讨论区。
+
+### 访问giscus.app 
+
+访问[Giscus](https://giscus.app/)官网，按照提示进行配置：
+
+| 条目 | 格式 | 备注 |
+| :-- | :-- | :-- |
+| 语言 | 自选，中英均可 | - |
+| Github仓库 | 用户名/仓库名 | - |
+| 页面映射方式 | 讨论标题包含页面URL | - |
+| 讨论区分类 | Blog Post Comments | - |
+| 功能特性 | 自选 | - |
+| 主题配色 | 用户偏好的色彩方案 | - |
+
+在启动giscus章节，你会得到一个类似下面的代码片段（记下来）：
+
+``` html
+<script src="https://giscus.app/client.js"
+        data-repo="nemossi/iknow.public"
+        data-repo-id="R_kgDONvs2BA"
+        data-category="Blog Post Comments"
+        data-category-id="DIC_kwDONvs2BM4Cm2sm"
+        data-mapping="url"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+### 配置Astro博客
+
+
+
 ## 网站构建及部署
 
 | Host | Github Pages | Netlify | Vercel |
@@ -147,8 +207,8 @@ TODO
 | 数据库 | 不支持 | 支持 | 支持 |
 
 > 建议：
-> - 对编程技术有一定了解，且不需要任何动态服务，可选Github Pages
-> - 其它情况，可优先考虑Netlify
+> - Github Pages：对编程技术有一定了解且不需要任何动态服务，可考虑Github Pages
+> - Netlify：其它情况下的默认选择，尤其是中文网站（中国大陆用户访问较多）
 
 ### Github Pages
 

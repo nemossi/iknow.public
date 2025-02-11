@@ -170,12 +170,16 @@ export default defineConfig
 
 ``` shell
 # 安装rehype-mermaid，用于渲染Markdown中的mermaid图表
-pnpm install rehype-mermaid  
+pnpm install rehype-mermaid
 # 安装playright，rehype-mermaid依赖playwright和浏览器环境将Markdown中的mermaid图表渲染为SVG图像
 pnpm add -D playwright
 # 安装chrome浏览器，playwright不能用headless模式渲染mermaid图表
 pnpm exec playwright install --with-deps chromium
 ```
+
+> 注意：
+> `pnpm exec playwright install --with-deps chromium`命令，会下载一个chrome浏览器，用于`playwright`渲染`mermaid`图表。
+> 同样的环境配置，也需要在CI/CD的构建脚本中添加对应的步骤，以确保`rehype-mermaid`能够正常工作。
 
 `Astro`内置的`shiki`语法高亮默认运行在其它插件之前，这会对所有代码块（包括标记为 "mermaid" 的代码块）进行处理，转换为带内联样式的HTML，这会导致`rehypeMermaid`无法识别并转换这些`mermaid`图表。因此，我们要在`astro.config.mjs`中禁止`Astro`内置的`shiki`语法高亮，改用第三方的`rehype-shiki`语法高亮来替换，并确保语法高亮的处理放在`mermaid`图表渲染之后，以避免对`rehype-mermaid`渲染的干扰。
 
@@ -324,11 +328,14 @@ export const Settings =
     - 手动触发
 - 构建步骤
     - actions/checkout@v4: 拉取代码到本地仓库
+    - pnpm/action-setup@v4: 安装pnpm
+    - actions/setup-node@v4: 安装node.js
+    - 安装playwright（用于渲染mermaid图表）
     - withastro/action@v3: 编译、导出Astro网站
     - actions/deploy-pages@v4: 发布网站到gh-pages分支
 
 ``` yaml
-name: Deploy to GitHub Pages
+name: Deploy Astro Site to GitHub Pages
 
 on:
   push:
@@ -348,6 +355,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+          
+      - name: Install node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          check-latest: true
+          cache: 'pnpm'
+          cache-dependency-path: '.blog/pnpm-lock.yaml'
+
+      # NOTE: `rehype-mermaid` depends on `playwright` with `chrome` browser
+      - name: Install Playwright (with Chromium)
+        run: |
+          cd .blog
+          pnpm dlx playwright install --with-deps chromium
 
       - name: Install dependencies, build, and export site
         uses: withastro/action@v3

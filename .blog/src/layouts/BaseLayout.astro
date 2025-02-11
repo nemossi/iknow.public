@@ -1,12 +1,13 @@
 ---
+import { SITE } from '@/config'
 import BaseHead from '@components/BaseHead.astro'
 import Footer from '@components/Footer.astro'
 import Header from '@components/Header.astro'
 import GoogleAnalytics from '@components/support/GoogleAnalytics.astro'
 import UmamiAnalytics from '@components/support/UmamiAnalytics.astro'
-import { SITE } from '@/config'
 
-interface Props {
+interface Props
+{
     title: string
     description: string
     ogImage?: any
@@ -37,7 +38,7 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
              document.documentElement.classList.remove('dark')
          }
         </script>
-        <script is:inline src=`/${SITE.base}vendor/lenis/lenis1.1.5.min.js`></script>
+        <script is:inline src=`${SITE.url}vendor/lenis/lenis1.1.5O.min.js`></script>
         <script is:inline>
         const lenis = new Lenis()
         function raf(time) {

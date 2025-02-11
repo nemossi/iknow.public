@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 
 const { category } = Astro.props
 const URL = Astro.url.href
-const categoriesURL = `${Astro.url.origin}/categories`
+const categoriesURL = `${SITE.url}categories`
 
 const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
     (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -47,7 +47,7 @@ const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
         subTitle={category.data.description}
         btnExists={true}
         btnTitle="Go to List"
-        btnURL="/categories"
+        btnURL=`${SITE.base}categories`
     />
 
     <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mb-10 2xl:max-w-full">

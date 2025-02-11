@@ -10,28 +10,28 @@ export const SITE: Site = {
 }
 
 export const NavigationLinks: NavigationLink[] = [
-    { name: '文章', url: '/posts' },
-    { name: '分类', url: '/categories' },
-    { name: '时间线', url: '/timeline' },
-    { name: '关于', url: '/posts/life/about-nemossi' },
-    { name: '朋友', url: '/friends' },
+    { name: '文章', url: '${SITE.base}posts' },
+    { name: '分类', url: '${SITE.base}categories' },
+    { name: '时间线', url: '${SITE.base}timeline' },
+    { name: '关于', url: '${SITE.base}posts/life/about-nemossi' },
+    { name: '朋友', url: '${SITE.base}friends' },
 ]
 
 export const FooterLinks = [
     {
         section: '博客',
         links: [
-            { name: '文章', url: '/posts' },
-            { name: '时间线', url: '/timeline' },
-            { name: '分类', url: '/categories' },
-            { name: '关于', url: '/posts/life/about-nemossi' },
+            { name: '文章', url: '${SITE.base}posts' },
+            { name: '时间线', url: '${SITE.base}timeline' },
+            { name: '分类', url: '${SITE.base}categories' },
+            { name: '关于', url: '${SITE.base}posts/life/about-nemossi' },
         ],
     },
     {
         section: '其它',
         links: [
-            { name: 'RSS', url: '/rss.xml' },
-            { name: 'Site Map', url: '/sitemap-index.xml' },
+            { name: 'RSS', url: '${SITE.base}rss.xml' },
+            { name: 'Site Map', url: '${SITE.base}sitemap-index.xml' },
         ],
     },
 ]

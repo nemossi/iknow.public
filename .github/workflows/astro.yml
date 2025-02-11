@@ -19,6 +19,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # NOTE: rehype-mermaid depends on playwright & chrome to render diagrams
+      - name: Install Playwright (with Chromium)
+        run: pnpm exec playwright install --with-deps chromium --prefix .blog
+
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium --with-deps
+
       - name: Install dependencies, build, and export site
         uses: withastro/action@v3
         with:

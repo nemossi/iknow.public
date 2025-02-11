@@ -26,13 +26,11 @@ oldKeywords: []
 
 本文将利用Astro定制个人博客网站，其主要功能包括：
 - 网站模板
-    - [x] 支持网站路径（如Github非同名仓库）
+    - [x] 支持网站路径（Github仓库，且与用户名不同）
     - [x] 首页：导航条、尾部链接、推荐文章、最新文章
     - [x] 配色：两套配色方案（深色、浅色），动态切换
     - [x] 索引页：时间线、主题分类
     - [ ] 数据页：友链、项目、收藏
-    - [ ] 讲演：Slidev集成
-    - [ ] 评论：Giscus集成
 - 文章渲染
     - [x] Github Flavor Markdown（GFM方言）兼容
     - [x] 代码语法高亮
@@ -42,12 +40,17 @@ oldKeywords: []
     - [x] 解决H1标题重复渲染问题
     - [x] TOC目录
     - [x] 估算阅读时间
+    - [ ] 讲演：Slidev集成
+- 内容社交
+    - [x] 点赞（表情）：Giscus集成
+    - [x] 评论：Giscus集成
+    - [ ] 分享
 - 网站部署
     - [x] Github Pages
     - [ ] Netlify
     - [ ] Vercel
 
-## 环境配置与项目初始化
+## 配置与初始化
 
 ``` shell
 # 检查开发环境（前提条件）
@@ -81,13 +84,86 @@ pnpm run dev                # 启动完成，可打开浏览器，访问提示�
 - 图文展示信息的修改
 - 主题分类的调整
 
-## Markdown的渲染
+## 内容渲染
 
 下面是`astro.config.mjs`的完整配置示例。
 
 ``` javascript
-TODO
+
+// ...
+
+import { remarkReadingTime, remarkRemoveH1 } from './src/support/plugins.ts'
+import remarkGemoji from 'remark-gemoji';
+import remarkMath from 'remark-math';
+
+import { rehypeShiki } from '@astrojs/markdown-remark'
+import rehypeMermaid from 'rehype-mermaid';
+import rehypeKatex from 'rehype-katex';
+
+import mdx from '@astrojs/mdx'
+
+// ...
+
+export default defineConfig
+(
+    {
+        site: SITE.url,
+        base: SITE.base,
+
+        // ...
+
+        markdown:
+        {
+            remarkPlugins:
+            [
+                remarkRemoveH1,
+                remarkReadingTime,
+                remarkGemoji,
+                remarkMath,
+            ],
+
+            syntaxHighlight: false,
+
+            rehypePlugins:
+            [
+                [
+                    rehypeMermaid,
+                    {
+                        mermaidConfig:
+                        {
+                            theme: 'default',
+                            themeVariables:
+                            {
+                                // Set outlined fore-colors in light/dark theme
+                                lineColor: '#808080',
+                                primaryTextColor: '#808080',
+                                textColor: '#808080',
+                                transitionColor: "#808080",
+                            },
+                        },
+                    },
+                ],
+                rehypeKatex,
+                [
+                    rehypeShiki,
+                    {
+                        themes:
+                        {
+                            light: 'github-light',
+                            dark: 'github-dark',
+                        },
+                        wrap: false,
+                    }
+                ],
+            ],
+        },
+
+        // ...
+
+    }
+)
 ```
+
 ### Mermaid图表
 
 按下面方法安装`rehype-mermaid`及其依赖环境playwright和浏览器：
@@ -112,9 +188,6 @@ pnpm exec playwright install --with-deps chromium
     - 内联代码会被`remark`解析为`<code>`标签，但我们禁止了可以处理内联代码的`astro`内置的`shiki`语法高亮，而随后添加的`rehype-shiki`又只处理多行代码块，不会处理内联代码，因此内联代码只会原样输出，不能被正确渲染
     - 为解决这个问题，我们需要添加一个`p code`的样式，以使内联代码能够被正确渲染
 
-``` javascript
-```
-
 ``` css
 /* in src/styles/global.css */
 p code {
@@ -128,16 +201,23 @@ p code {
 
 ### 数学公式
 
-- 引用和配置`remark-math`和`rehype-katex`插件
-- 引入`katex.min.css`
+| 插件 | 说明 | 备注 |
+| :-- | :-- | :-- |
+| remark-math | 解析Markdown中的数学公式 | - |
+| rehype-katex | 渲染数学公式为SVG图像 | 不支持内联代码 |
 
-TODO
+参考前文的`astro.config.mjs`配置，在remark和rehype中配置上面两个插件即可。此外，要特别注意`Header.astro`文件中中引入`katex`的CSS样式表，否则MathML也会被重复渲染。
 
-## 评论
+``` typescript
+import "katex/dist/katex.min.css";
+```
+
+## 社交评论
 
 推荐使用`Giscus`评论系统，其特点如下：
-- 无需注册，支持匿名评论
-- 支持Github账号登录
+- 利用Github评论区功能，无需依赖其它服务
+- 支持Github账号登录，也支持匿名评论
+- 除评论外，还支持表情符号、点赞等功能
 - 支持多种主题风格
 
 使用Giscus评论系统的前提条件有：
@@ -191,7 +271,32 @@ TODO
 
 ### 配置Astro博客
 
+在`config.ts`文件中添加Giscus配置。
 
+``` typescript
+export const Settings =
+{
+    // ...
+
+    Comment:
+    {
+        enable: true,
+
+        giscus:
+        {
+            repo: 'nemossi/iknow.public',
+            repoId: 'R_kgDONvs2BA',
+            category: 'Blog Post Comments',
+            categoryId: 'DIC_kwDONvs2BM4Cm2sm',
+            darkThem: 'noborder_gray',
+            lightThem: 'light',
+        },
+    },
+
+    // ...
+
+}
+```
 
 ## 网站构建及部署
 
@@ -213,7 +318,7 @@ TODO
 ### Github Pages
 
 下面是一个简单的Github Pages部署示例：
-- 构建触发条件
+- 触发条件
     - push到main分支
     - 每天0点16分
     - 手动触发

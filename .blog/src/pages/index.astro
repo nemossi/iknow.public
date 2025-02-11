@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogInsight from '@components/blog/BlogInsight.astro'
+import HeroSection from '@components/ui/sections/HeroSection.astro'
+import FeaturesSection from '@components/ui/sections/FeaturesSection.astro'
+import HeroSectionAlt from '@components/ui/sections/HeroSectionAlt.astro'
+import blogHeroImg from '@images/home.png'
+
+const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
+    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+).slice(0, 3);
+---
+
+<BaseLayout>
+    <HeroSection
+        title=`Hello, <span class="text-yellow-500 dark:text-yellow-400">World</span>`
+        subTitle="你好，我是Nemossi，欢迎来到我的博客。"
+        primaryBtn="浏览文章"
+        primaryBtnURL="/posts"
+        src={blogHeroImg}
+        alt="nemossi's blog"
+    />
+
+    <FeaturesSection />
+
+    <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+        <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+            <h2 class="text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+                最新文章
+            </h2>
+            <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
+                总想写点什么，但很少真正动笔。
+            </p>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {
+                posts.map(b => (
+                    <BlogInsight blog={b} />
+                ))
+            }
+        </div>
+    </section>
+
+    <HeroSectionAlt
+        title="在GitHub上关注我"
+        subTitle="我在GitHub上开源了一些小项目，你可以通过查看我的代码了解更多。"
+        url="https://github.com/nemossi"
+    />
+</BaseLayout>

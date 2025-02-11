@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          check-latest: true
+          cache: 'pnpm'
 
       # NOTE: rehype-mermaid depends on playwright & chrome to render diagrams
       - name: Install Playwright (with Chromium)

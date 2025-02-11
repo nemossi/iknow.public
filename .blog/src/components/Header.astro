@@ -2,6 +2,7 @@
 import NavLink from '@components/ui/links/NavLink.astro'
 import BrandLogo from '@components/ui/logos/BrandLogo.astro'
 import Theme from '@components/ui/logos/Theme.astro'
+import { SITE } from '@/config'
 import { NavigationLinks } from '@/config'
 import "katex/dist/katex.min.css";
 ---
@@ -215,4 +216,4 @@ window.addEventListener('load', () => {
     })
 })
 </script>
-<script is:inline src="/vendor/preline/collapse2.1.0.min.js"></script>
+<script is:inline src=`/${SITE.base}vendor/preline/collapse2.1.0.min.js`></script>

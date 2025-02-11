@@ -36,8 +36,8 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
          else {
              document.documentElement.classList.remove('dark')
          }
-         </script>
-        <script is:inline src="/vendor/lenis/lenis1.1.5.min.js"></script>
+        </script>
+        <script is:inline src=`/${SITE.base}vendor/lenis/lenis1.1.5.min.js`></script>
         <script is:inline>
         const lenis = new Lenis()
         function raf(time) {

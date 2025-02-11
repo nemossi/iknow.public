@@ -1,4 +1,5 @@
 ---
+import { SITE } from 'config'
 
 const { slug, title, description, count, publishDate } = Astro.props
 
@@ -11,7 +12,7 @@ interface Props {
 }
 ---
 
-<a href=`/categories/${slug}` class="flex flex-col justify-between size-full bg-neutral-100 shadow-lg rounded-lg p-5 dark:bg-neutral-900/30 group">
+<a href=`${SITE.base}categories/${slug}` class="flex flex-col justify-between size-full bg-neutral-100 shadow-lg rounded-lg p-5 dark:bg-neutral-900/30 group">
     <div class="flex justify-between items-center mb-3">
         <div class="flex justify-center gap-x-4 items-center">
             <div class="flex-shrink-0">

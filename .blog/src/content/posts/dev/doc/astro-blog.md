@@ -26,10 +26,12 @@ oldKeywords: []
 
 本文将利用Astro定制个人博客网站，其主要功能包括：
 - 网站模板
-    - [x] 首页
-    - [x] 索引：时间线、主题分类
+    - [x] 支持网站路径（如Github非同名仓库）
+    - [x] 首页：导航条、尾部链接、推荐文章、最新文章
     - [x] 配色：两套配色方案（深色、浅色），动态切换
-    - [ ] 外链：友链、项目、收藏
+    - [x] 索引页：时间线、主题分类
+    - [ ] 数据页：友链、项目、收藏
+    - [ ] 讲演：Slidev集成
     - [ ] 评论：Giscus集成
 - 文章渲染
     - [x] Github Flavor Markdown（GFM方言）兼容
@@ -42,6 +44,8 @@ oldKeywords: []
     - [x] 估算阅读时间
 - 网站部署
     - [x] Github Pages
+    - [ ] Netlify
+    - [ ] Vercel
 
 ## 环境配置与项目初始化
 
@@ -133,12 +137,69 @@ TODO
 
 | Host | Github Pages | Netlify | Vercel |
 | :-- | :-- | :-- | :-- |
-| 配置简便 | 略复杂 | 优秀 | 优秀 |
-| 可访问性 | 较好，可能被GFW误伤 | 适合国内访问 | 适合海外访问 |
-| 
+| 可访问性 | 较好，可能被GFW误伤 | 适合国内访问（全球CDN加速） | 适合海外访问 |
+| 免费流量 | 无限制 | 100G（每月） | 100G（每月） |
+| 免费构建 | 无限制 | 300分钟/月 | 1000分钟/月 |
+| 自定义域名 | 支持 | 支持 | 支持 |
+| 部署配置 | 略显复杂 | 简单 | 简单 |
+| 日志监控 | 基础 | 详细 | 详细 |
+| Serverless | 不支持 | 支持 | 支持 |
+| 数据库 | 不支持 | 支持 | 支持 |
 
-下面以Github Pages为例介绍如何部署Astro网站。
+> 建议：
+> - 对编程技术有一定了解，且不需要任何动态服务，可选Github Pages
+> - 其它情况，可优先考虑Netlify
+
+### Github Pages
+
+下面是一个简单的Github Pages部署示例：
+- 构建触发条件
+    - push到main分支
+    - 每天0点16分
+    - 手动触发
+- 构建步骤
+    - actions/checkout@v4: 拉取代码到本地仓库
+    - withastro/action@v3: 编译、导出Astro网站
+    - actions/deploy-pages@v4: 发布网站到gh-pages分支
 
 ``` yaml
+name: Deploy to GitHub Pages
 
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '16 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies, build, and export site
+        uses: withastro/action@v3
+        with:
+          node-version: 22
+          package-manager: pnpm
+          path: .blog
+          build-command: npm run build
+          export-dir: dist
+          
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          branch: gh-pages
+          folder: .blog/dist
 ```

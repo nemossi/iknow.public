@@ -1,6 +1,7 @@
 import type { NavigationLink, Site } from './types.ts'
 
-export const SITE: Site = {
+export const SITE: Site =
+{
     author: 'Nemossi',
     url: 'https://nemossi.github.io/iknow.public/',
     base: '/iknow.public/',
@@ -9,46 +10,54 @@ export const SITE: Site = {
     shortDescription: '',
 }
 
-export const NavigationLinks: NavigationLink[] = [
-    { name: '文章', url: '${SITE.base}posts' },
-    { name: '分类', url: '${SITE.base}categories' },
-    { name: '时间线', url: '${SITE.base}timeline' },
-    { name: '关于', url: '${SITE.base}posts/life/about-nemossi' },
-    { name: '朋友', url: '${SITE.base}friends' },
+export const NavigationLinks: NavigationLink[] =
+[
+    { name: '文章', url: `${SITE.base}posts` },
+    { name: '分类', url: `${SITE.base}categories` },
+    { name: '时间线', url: `${SITE.base}timeline` },
+    { name: '关于', url: `${SITE.base}posts/life/about-nemossi` },
+    { name: '朋友', url: `${SITE.base}friends` },
 ]
 
-export const FooterLinks = [
+export const FooterLinks =
+[
     {
         section: '博客',
-        links: [
-            { name: '文章', url: '${SITE.base}posts' },
-            { name: '时间线', url: '${SITE.base}timeline' },
-            { name: '分类', url: '${SITE.base}categories' },
-            { name: '关于', url: '${SITE.base}posts/life/about-nemossi' },
+        links:
+        [
+            { name: '文章', url: `${SITE.base}posts` },
+            { name: '时间线', url: `${SITE.base}timeline` },
+            { name: '分类', url: `${SITE.base}categories` },
+            { name: '关于', url: `${SITE.base}posts/life/about-nemossi` },
         ],
     },
     {
         section: '其它',
-        links: [
-            { name: 'RSS', url: '${SITE.base}rss.xml' },
-            { name: 'Site Map', url: '${SITE.base}sitemap-index.xml' },
+        links:
+        [
+            { name: 'RSS', url: `${SITE.base}rss.xml` },
+            { name: 'Site Map', url: `${SITE.base}sitemap-index.xml` },
         ],
     },
 ]
 
-export const Settings = {
-    GoogleAnalytics: {
+export const Settings =
+{
+    GoogleAnalytics:
+    {
         enable: false,
         id: 'G-TKQ4L3ZDSF',
     },
 
     // See https://github.com/umami-software/umami
-    UmamiAnalytics: {
+    UmamiAnalytics:
+    {
         enable: true,
         dataWebsiteID: 'bf63658a-9418-4f39-a6a1-5a0cedb6e429',
     },
 
-    Comment: {
+    Comment:
+    {
         // Please note that the environment value here is `string` type on Cloudflare Pages
         // If you want to disable the comment system, please delete the `COMMENT_ENABLE` environment variable not just set it to `false`.
         enable: !!(import.meta.env.COMMENT_ENABLE) || !!process.env.COMMENT_ENABLE,
@@ -65,12 +74,14 @@ export const Settings = {
         },
     },
 
-    Assets: {
+    Assets:
+    {
         // If you don't want to upload the build assert(image/js/css/etc...) to anywhere, just set this to false
         // Please note that the environment value here is `string` type on Cloudflare Pages
         // If you want to disable the comment system, please delete the `S3_ENABLE` environment variable not just set it to `false`.
         uploadAssetsToS3: !!(import.meta.env.S3_ENABLE) || !!process.env.S3_ENABLE,
-        config: {
+        config:
+        {
             // see https://github.com/syhily/astro-uploader to get how to configure the uploader,
             // The following configuration will upload the compiled `assets` folder to S3 or R2.
             // You can set a separate domain for it so that you can access all resources using a CDN domain name.
@@ -89,10 +100,12 @@ export const Settings = {
     },
 }
 
-export const SEO = {
+export const SEO =
+{
     title: SITE.title,
     description: SITE.description,
-    structuredData: {
+    structuredData:
+    {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         'inLanguage': 'en-US',

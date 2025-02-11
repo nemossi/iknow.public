@@ -31,13 +31,11 @@ jobs:
           node-version: '22'
           check-latest: true
           cache: 'pnpm'
-          
-      # NOTE: rehype-mermaid depends on playwright & chrome to render diagrams
+          cache-dependency-path: '.blog/pnpm-lock.yaml'
+
+      # NOTE: `rehype-mermaid` depends on `playwright` with `chrome` browser
       - name: Install Playwright (with Chromium)
         run: pnpm exec playwright install --with-deps chromium --prefix .blog
-
-      - name: Install Playwright Browsers
-        run: npx playwright install chromium --with-deps
 
       - name: Install dependencies, build, and export site
         uses: withastro/action@v3

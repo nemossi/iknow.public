@@ -1,6 +1,6 @@
 ---
 title: "Katex：数学公式排版"
-description: ""
+description: "让你的技术博客看起来更专业"
 pubDate: "2025-02-04 19:30:02"
 category: "dev"
 banner: "@images/banners/banner-dev-doc.jpg"

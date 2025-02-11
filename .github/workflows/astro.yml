@@ -37,7 +37,7 @@ jobs:
       - name: Install Playwright (with Chromium)
         run: |
           cd .blog
-          pnpm exec playwright install --with-deps chromium
+          pnpm dlx playwright install --with-deps chromium
 
       - name: Install dependencies, build, and export site
         uses: withastro/action@v3

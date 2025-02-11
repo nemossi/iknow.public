@@ -2,7 +2,7 @@ import type { NavigationLink, Site } from './types.ts'
 
 export const SITE: Site = {
     author: 'Nemossi',
-    url: 'https://github.com/nemossi',
+    url: 'https://nemossi.github.io/iknow.public/',
     title: 'Nemossi的无人区',
     description: 'Nemossi的个人博客',
     shortDescription: '',
@@ -55,7 +55,7 @@ export const Settings = {
         // please visit https://giscus.app/ to learn how to configure it.
         // You can also check out this article: https://liruifengv.com/posts/add-comments-to-astro/.
         giscus: {
-            repo: 'nemossi/iknow',
+            repo: 'nemossi/iknow.public',
             repoId: 'MDEwOlJlcG9zaXRvcnkxMjcyODI0NzA',
             category: 'Announcements',
             categoryId: 'DIC_kwDOB5YtJs4CfZnX',

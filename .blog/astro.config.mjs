@@ -6,7 +6,8 @@ import remarkMath from 'remark-math';
 
 import { rehypeShiki } from '@astrojs/markdown-remark'
 import rehypeMermaid from 'rehype-mermaid';
-import rehypeKatex from 'rehype-katex';
+import rehypeMathjax from 'rehype-mathjax';
+//import rehypeKatex from 'rehype-katex';
 
 import mdx from '@astrojs/mdx'
 
@@ -78,7 +79,7 @@ export default defineConfig
                         },
                     },
                 ],
-                rehypeKatex,
+                rehypeMathjax,
                 [
                     rehypeShiki,
                     {

@@ -11,8 +11,16 @@ The template is based on [gblog](https://github.com/godruoyi/gblog), a simple an
 - 🐝 Category and Timeline Support
 - 🍋 Google Analytics & Google Structured Data
 - 🐜 SEO and Responsiveness
-- 🪲 Markdown And MDX
+- 🪲 Markdown and MDX
 - 🏂🏾 Page Compression & Image Optimization
+
+The following is a list of features that have been added or modified in the original gblog template:
+- Markdown Rendering
+    - Support inline `code`
+    - Support `emoji` expressions
+    - Support `Mermaid` diagrams
+    - Support `Katex` or `MathJax` formulas
+    - Support `ToC` navigation
 
 ### Development Commands
 

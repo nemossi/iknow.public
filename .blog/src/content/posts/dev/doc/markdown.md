@@ -29,6 +29,17 @@ Markdown比较适合的创作场景有：
 ``` mermaid
 flowchart TD
 
+txt("Plain Text")
+rest("reStructuredText<br/>by David Goodger, 2001")
+md101("Markdown v1.0.1<br/>by John Gruber, 2004")
+mdex("Markdown Extra<br/>by Michel Fortin, 2006")
+mmd("MultiMarkdown<br/>by Fletcher Penney, 2007")
+cmark("Common Mark<br/>v0.31.2, since 2014")
+ipynb("Jupyter Markdown<br/>by .ipynb, since 2011")
+gfm("Github Flavored Markdown<br/>v0.29, since 2017<br/>by Github")
+mdx("MDX<br/>v3.0 (latest), since 2018<br/>by johno and timn")
+panmd("Pandoc Markdown<br/>by John MacFarlane, since 2006")
+
 txt --> rest
 txt --> md101
 md101 --> cmark
@@ -49,17 +60,6 @@ subgraph "main"
   ipynb
   mdx
 end
-
-txt("Plain Text")
-rest("reStructuredText\nby David Goodger, 2001")
-md101("Markdown v1.0.1\nby John Gruber, 2004")
-mdex("Markdown Extra\nby Michel Fortin, 2006")
-mmd("MultiMarkdown\nby Fletcher Penney, 2007")
-cmark("Common Mark\nv0.31.2, since 2014")
-ipynb("Jupyter Markdown\nby .ipynb, since 2011")
-gfm("Github Flavored Markdown\nv0.29, since 2017\nby Github")
-mdx("MDX\nv3.0 (latest), since 2018\nby johno and timn")
-panmd("Pandoc Markdown\nby John MacFarlane, since 2006")
 ```
 - [Markdown v1.0.1 by John Gruber (2004)](https://daringfireball.net/projects/markdown/)
     - 最原始的Markdown语法，功能比较少，缺乏标准化
@@ -100,8 +100,8 @@ remark和markdown-it是两个比较流行的Markdown解析器：
 
 ### 文本、图片和链接
 
-| 行内嵌 | 语法 | cmark | gfm | remark | markdown-it |
-| :-- | :-: | :-: | :-: | :-: | :-: |
+| 行内嵌 | 语法 | cmark | gfm | remark |
+| :-- | :-: | :-: | :-: | :-: |
 | 标题 | # `heading` | ✅ | ✅ | ✅ |
 | 正文 | `plain-text` | ✅ | ✅ | ✅ |
 | 加粗 | \*\*`text`\*\*, \_\_`text`\_\_ | ✅ | ✅ | ✅ |
@@ -121,8 +121,8 @@ remark和markdown-it是两个比较流行的Markdown解析器：
 
 ### 列表、表格与文本块
 
-| 多行文本 | 语法 | cmark | gfm | remark | markdown-it |
-| :-- | :-: | :-: | :-: | :-: | :-: |
+| 多行文本 | 语法 | cmark | gfm | remark |
+| :-- | :-: | :-: | :-: | :-: | 
 | `无序`列表 | - `item` | ✅ | ✅ | ✅ |
 | `有序`列表 | 1. `item` | ✅ | ✅ | ✅ |
 | `任务`列表 | - [ ] `todo`, - [x] `done` | ❌ | ✅ | `remark-gfm` |
@@ -134,8 +134,8 @@ remark和markdown-it是两个比较流行的Markdown解析器：
 
 ### 图表
 
-| Mermaid | 语法 | cmark | gfm | remark | markdown-it | pandoc |
-| :-- | :-: | :-: | :-: | :-: | :-: | :-: |
+| Mermaid | 语法 | cmark | gfm | remark |
+| :-- | :-: | :-: | :-: | :-: |
 | `流程图` | \`\`\` `mermaid` \`\`\` | ❌ | ❌ | `remark-mermaid` |
 | `时序图`  | \`\`\` `mermaid` \`\`\` | ❌ | ❌ | `remark-mermaid` |
 | `状态流图` (UML) | \`\`\` `mermaid` \`\`\` | ❌ | ❌ | `remark-mermaid` |
@@ -154,21 +154,21 @@ remark和markdown-it是两个比较流行的Markdown解析器：
 
 > [Mermaid](https://https://mermaid.js.org/)是一个在markdown生态里非常流行的绘图工具。
 
-| 其它图表 | 语法 | cmark | gfm | remark | markdown-it |
-| :-- | :-: | :-: | :-: | :-: | :-: |
+| 其它图表 | 语法 | cmark | gfm | remark |
+| :-- | :-: | :-: | :-: | :-: |
 | `电路图` | - | ❌ | ❌ | `circuitikz` |
 | `dot图` | - | ❌ | ❌ | `remark-graphviz` |
 
 ### 公式
 
-| 公式 | 语法 | cmark | gfm | remark | markdown-it |
-| :-- | :-: | :-: | :-: | :-: | :-: |
-| 行内`公式` | \$`latex`\$ | ❌ | ❌ | `remark-math` |
+| 公式 | 语法 | cmark | gfm | remark |
+| :-- | :-: | :-: | :-: | :-: |
+| 内联`公式` | \$`latex`\$ | ❌ | ❌ | `remark-math` |
 | `公式`块 | \$\$`letax`\$\$ | ❌ | ❌ | `remark-math` |
-| `KaTeX`引擎 | - | ❌	| ❌	| `rehype-katex` |
-| `MathJax`引擎	| - | ❌ | ❌ | `rehype-mathjax` |
-| `化学分子式` | - | ❌ | ❌ | `mhchen` |
-| `化学结构式` | - | ❌ | ❌ | `kekule.js` |
+| `KaTeX`引擎 | `latex` | ❌ | ❌ | `rehype-katex` |
+| `MathJax`引擎	| `latex` | ❌ | ❌ | `rehype-mathjax` |
+| `化学结构式` | `smiles` | ❌ | ❌ | `rehype-smiles` |
+| `五线谱` | `abc` | ❌ | ❌ | `remark-abcjs` |
 
 [Katex](https://katex.org/)和[MathJax](https://www.mathjax.org/)是两种广泛使用的LaTeX公式渲染引擎：
 - Katex的渲染性能更好，支持的LaTeX语法略少
@@ -182,8 +182,8 @@ remark和markdown-it是两个比较流行的Markdown解析器：
 
 ### 其它
 
-| 其它 | 语法 | cmark | gfm | remark | markdown-it |
-| :-- | :-: | :-: | :-: | :-: | :-: |
+| 其它 | 语法 | cmark | gfm | remark |
+| :-- | :-: | :-: | :-: | :-: |
 | HTML转换 | - | ❌ | ❌ | `remark-rehype` |
 | TOC目录 | - | ❌ | ❌ | `remark-toc` |
 | YAML元数据 | - | ❌ | ❌ | `remark-frontmatter` |
@@ -208,10 +208,10 @@ remark和markdown-it是两个比较流行的Markdown解析器：
 | [Pandoc](https://pandoc.org/) | 通用文档转换工具（命令行），支持将Markdown转换为PDF等多种输出格式 |
 | [Jupiter Notebook](https://jupyter.org/) | 用于数据科学的交互式文档工具，支持Markdown和代码混合书写 |
 
-| 其它 | 说明 |
+| Chat AI | 说明 |
 | :-- | :-- |
 | [ChatGPT](https://chat.openai.com/) | 可广泛支持对各种Markdown方言和扩展的理解和生成 |
 | [Deepseek](https://chat.deepseek.ai/) | 同上 |
 | [Github Copilot](https://copilot.github.com/) | 同上 |
 
-> 可广泛支持代码块、Mermaid图表和Katex公式等
+> 均可生成Markdown文档，支持代码、Mermaid和LaTeX公式等。

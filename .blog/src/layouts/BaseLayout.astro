@@ -22,6 +22,7 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
 <html lang={lang} class="scrollbar-hide lenis lenis-smooth scroll-pt-16">
     <head>
         <title>{normalizeTitle}</title>
+        <link rel="stylesheet" href="/src/styles/global.css">
         <BaseHead
             title={normalizeTitle}
             description={description}

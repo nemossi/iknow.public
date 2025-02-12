@@ -4,7 +4,7 @@ description: "内容至上，前端只是配角"
 pubDate: "2025-02-04 16:25:35"
 category: "dev"
 banner: "@images/banners/banner-dev-doc.jpg"
-tags: ["dev", "doc", "markdown", "astro"]
+tags: ["dev", "doc", "astro", "markdown"]
 oldViewCount: 0
 oldKeywords: []
 ---
@@ -33,7 +33,7 @@ oldKeywords: []
     - [ ] 数据页：友链、项目、收藏
 - 文章渲染
     - [x] Github Flavor Markdown（GFM方言）兼容
-    - [x] 代码语法高亮
+    - [x] Shiki代码语法高亮
     - [x] Mermaid图表
     - [x] Katex数学公式
     - [x] Emoji表情符号
@@ -48,7 +48,6 @@ oldKeywords: []
 - 网站部署
     - [x] Github Pages
     - [ ] Netlify
-    - [ ] Vercel
 
 ## 配置与初始化
 

@@ -14,7 +14,6 @@
       word-break: normal !important;
     }
     
-    /* 另外，尝试让内部的 SVG 也保持 inline */
     mjx-container.MathJax[jax="SVG"] > svg,
     mjx-container.MathJax_inline[jax="SVG"] > svg
     {

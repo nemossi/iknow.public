@@ -7,23 +7,32 @@ banner: "@images/banners/banner-dev-doc.jpg"
 tags: ["dev", "doc", "latex", "mathjax"]
 oldViewCount: 0
 oldKeywords: []
+formula: "mathjax"
 ---
 
 # MathJax：公式渲染效果样例
 
-内联公式（`$`...`$`）：$E=mc^2$
+## 语法
 
-块级公式（`$$`...`$$`）：
+### LaTeX
+
+内联公式`$`...`$`: $E=mc^2$
+
+块级公式`$$`...`$$`:
+
 $$
 E=mc^2
 $$
 
-块级公式(`math`代码块)：
+块级公式`math`代码块:
+
 ``` math
 E=mc^2
 ```
 
-MathML
+### MathML
+
+块级公式`<math>`...`</math>`:
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mi>x</mi> <mo>=</mo>
@@ -47,41 +56,152 @@ MathML
   <mtext>.</mtext>
 </math>
 
-## 样例展示
+### AsciiMath
 
-*在这里只展示`Tikz`等`KaTex`所不支持的渲染效果*
+内联公式$sum_(i=1)^n i^3=((n(n+1))/2)^2$
 
-### 电路图
-
-$$
-\begin{circuitikz}[american]
-\draw (0,0) to[isource, l=$I_0$] (0,3) --
-        (2,3)
-   to[R=$R_1$] (2,0) -- (0,0);
-   \draw (2,3) -- (4,3) to[R=$R_2$]
-(4,0) -- (2,0); \end{circuitikz}
-$$
-
-### 化学结构式
+块级公式（`$$`...`$$`）：
 
 $$
-\documentclass{article}
-\usepackage{chemobabel}
-\usepackage{chemfig}
-\begin{document}
-\noindent Chemfig\\[5mm]
-\chemfig{*6 (-=-=-=)}\\[1cm]
-Chemobabel\\[5mm]
-\smilesobabel{c1ccccc1}{}
-\end{document}
+sum_(i=1)^n i^3=((n(n+1))/2)^2
 $$
 
-### 费曼图
+块级公式(`math`代码块)：
+
+``` math
+sum_(i=1)^n i^3=((n(n+1))/2)^2
+```
+
+## 效果展示
+
+### 数学
+
+#### 勾股定理
 
 $$
-\feynmandiagram [horizontal=a to b] {
-i1 [particle=\(e^{-}\)] -- [fermion] a -- [fermion] i2 [particle=\(e^{+}\)],
-a -- [photon, edge label=\(\gamma\), momentum&#39;=\(k\)] b,
-f1 [particle=\(\mu^{+}\)] -- [fermion] b -- [fermion] f2 [particle=\(\mu^{-}\)],
-};
+a^2 + b^2 = c^2
+$$
+
+#### 三角函数
+$$
+\sin^2\theta + \cos^2\theta = 1
+$$
+
+#### 欧拉公式
+$$
+e^{i\pi} + 1 = 0
+$$
+
+#### 椭圆曲线方程
+
+$$
+y^2 = x^3 + ax + b
+$$
+
+#### 范德蒙行列式
+
+$$
+\det\begin{pmatrix}
+1 & 1 & \cdots & 1\\[1mm]
+x_1 & x_2 & \cdots & x_n\\[1mm]
+x_1^2 & x_2^2 & \cdots & x_n^2\\[1mm]
+\vdots & \vdots & \ddots & \vdots\\[1mm]
+x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1}
+\end{pmatrix}
+=\prod_{1\le i<j\le n}(x_j-x_i)\,.
+$$
+
+#### 泰勒级数展开
+
+$$
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n\,.
+$$
+
+#### 牛顿–莱布尼茨公式
+
+$$
+\int_a^b f'(x)\,dx = f(b) - f(a)\,.
+$$
+
+### 物理
+
+#### 爱因斯坦质能方程
+
+$$
+E = mc^2
+$$
+
+#### 麦克斯韦方程组
+
+$$
+\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}\,,
+$$
+
+$$
+\nabla \cdot \mathbf{B} = 0\,.
+$$
+
+$$
+\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\,.
+$$
+
+$$
+\nabla \times \mathbf{B} = \mu_0\mathbf{J} + \mu_0\varepsilon_0 \frac{\partial \mathbf{E}}{\partial t}\,.
+$$
+
+#### 薛定谔方程
+
+$$
+i\hbar\,\frac{\partial \psi(\mathbf{r},t)}{\partial t} = \left[-\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r},t)\right]\psi(\mathbf{r},t)
+$$
+
+- $i$，虚数单位
+- $\hbar$，约化普朗克常数
+- $m$，粒子的质量
+- $\nabla^2$，拉普拉斯算符
+- $V(\mathbf{r},t)$，粒子所处的势能，
+- $\psi(\mathbf{r},t)$，粒子在位置$\mathbf{r}$和时间 $t$下的波函数
+
+### 化学
+
+#### 电解水
+
+$$
+2H_2O \rightarrow 2H_2 + O_2
+$$
+
+#### 光合作用
+
+$$
+6CO_2 + 6H_2O \rightarrow C_6H_{12}O_6 + 6O_2
+$$
+
+#### 黑火药
+
+$$
+2KNO_3 + S + 3C \rightarrow K_2S + 3CO_2 + N_2
+$$
+
+#### TNT炸药
+
+$$
+2C_7H_5N_3O_6 \rightarrow 3N_2 + 5H_2O + 7CO + 7C
+$$
+
+#### ATP水解
+
+$$
+\text{ATP} + \text{H}_2\text{O} \rightarrow \text{ADP} + \text{P}_i + \Delta G\,,
+$$
+
+## 高级插件
+
+[LaTeX插件列表](https://docs.mathjax.org/en/latest/input/tex/extensions/index.html)
+
+### mhchem化学式
+
+$$
+\ce{C6H5-CHO}
+\ce{$A$ ->[\ce{+H2O}] $B$}
+\ce{SO4^2- + Ba^2+ -> BaSO4 v}
 $$

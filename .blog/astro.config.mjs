@@ -3,12 +3,9 @@ import { defineConfig, passthroughImageService, sharpImageService } from 'astro/
 import { remarkReadingTime, remarkRemoveH1 } from './src/support/plugins.ts'
 import remarkGemoji from 'remark-gemoji';
 import remarkMath from 'remark-math';
-
 import { rehypeShiki } from '@astrojs/markdown-remark'
 import rehypeMermaid from 'rehype-mermaid';
-import rehypeMathjax from 'rehype-mathjax';
-//import rehypeKatex from 'rehype-katex';
-
+import rehypeMathDyn from './src/support/rehype-mathdyn.ts';
 import mdx from '@astrojs/mdx'
 
 import tailwind from '@astrojs/tailwind'
@@ -79,7 +76,8 @@ export default defineConfig
                         },
                     },
                 ],
-                rehypeMathjax,
+
+                rehypeMathDyn,
                 [
                     rehypeShiki,
                     {

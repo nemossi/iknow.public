@@ -1,4 +1,4 @@
 ---
 title: '生活'
-description: '死生昼夜事，百年一梦中。'
+description: '逝者如斯夫'
 ---

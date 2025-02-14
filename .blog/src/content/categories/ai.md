@@ -1,4 +1,4 @@
 ---
 title: '人工智能'
-description: '人类进化的下一步...'
+description: '我思故我在'
 ---

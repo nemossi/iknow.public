@@ -16,10 +16,10 @@ The template is based on [gblog](https://github.com/godruoyi/gblog), a simple an
 
 The following is a list of features that have been added or modified in the original gblog template:
 - Markdown Rendering
-    - Support inline `code`
-    - Support `emoji` expressions
     - Support `Mermaid` diagrams
-    - Support `Katex` or `MathJax` formulas
+    - Support `Katex` or `MathJax` formulas (per markdown file)
+    - Support inline `code` and code blocks with syntax highlighting
+    - Support `emoji` expressions
     - Support `ToC` navigation
 
 ### Development Commands

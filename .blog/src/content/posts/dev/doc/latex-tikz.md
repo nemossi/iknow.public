@@ -1,21 +1,23 @@
 ---
-title: "Tikz：LaTeX绘图渲染效果样例"
+title: "TikZ：LaTeX绘图渲染效果样例"
 description: "LaTex绘图工具的使用"
 pubDate: "2025-02-04 23:35:02"
 category: "dev"
 banner: "@images/banners/banner-dev-doc.jpg"
-tags: ["dev", "doc", "latex", "katex"]
+tags: ["dev", "doc", "latex", "tikz"]
 oldViewCount: 0
 oldKeywords: []
 formula: mathjax
 ---
 
-# Tikz：LaTeX绘图渲染效果样例
+# TikZ：LaTeX绘图渲染效果样例
 
-[Tikz](https://tikz.dev/)是LaTeX的绘图工具，它的特点是：
+[TikZ](https://tikz.dev/)是LaTeX的绘图工具，它的特点是：
 - 语法复杂，但功能强大，生成的图形效果专业、美观
 - 支持各种专业图形，如电路图、化学结构式、贝叶斯网络、费曼图等
 - 与LaTeX无缝集成，支持直接嵌入文档
+
+> 很遗憾，现在MathJax还不支持TikZ的渲染（而且看起来可能永远都没法支持）
 
 ## 效果展示
 

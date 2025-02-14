@@ -27,8 +27,8 @@ rehype-katex("rehype-katex")
 rehype-mathjax("rehype-mathjax")
 ascii-math("AsciiMath<br/>2004")
 mathml("MathML<br/>2024")
-tikz-core("Tikz<br/>2007")
-tikzjax("TikzJax<br/>2019")
+tikz-core("TikZ<br/>2007")
+tikzjax("TikZJax<br/>2019")
 
 tex --> latex -.-> mathjax --> rehype-mathjax
 latex --> katex --> rehype-katex
@@ -61,7 +61,7 @@ end
 - KaTeX和MathJax是LaTeX的两种渲染引擎
   - [KaTeX](https://katex.org/): 性能优异，但兼容性略差，只支持常用LaTeX语法
   - [MathJax](https://www.mathjax.org/): 完整兼容LaTeX，功能丰富，但性能较差
-- [Tikz](https://texample.net/tikz/):是LaTeX的绘图工具
+- [TikZ](https://texample.net/tikz/):是LaTeX的绘图工具
 
 | 渲染引擎 | KaTeX | MathJax | MathML |
 | :-- | :-- | :-- | :-- |
@@ -80,4 +80,4 @@ end
 - [KeTeX公式渲染效果样例](./latex-katex.md)
 - [MathJax公式渲染效果样例](./latex-mathjax.md)
 - [MathML公式渲染效果样例](./latex-mathml.md)
-- [Tikz绘图渲染效果样例](./latex-tikz.md)
+- [TikZ绘图渲染效果样例](./latex-tikz.md)

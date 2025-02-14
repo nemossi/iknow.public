@@ -58,23 +58,16 @@ formula: "mathml"
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 <mtable>
   <mlabeledtr id="e-is-m-c-square">
-  	<mtd>
-  	<mtext></mtext>
-  	</mtd>
-      <mrow>
-       <mi>E</mi>
-       <mo>=</mo>
-       <mrow>
-       <mtd>
-        <mi>m</mi>
-        <mo>⁢<!--INVISIBLE TIMES--></mo>
-        <msup>
-         <mi>c</mi>
-         <mn>2</mn>
-        </msup>
-        </mtd></mrow>
-     </mrow>
-    
+    <mrow>
+      <mi>E</mi>
+      <mo>=</mo>
+      <mi>m</mi>
+      <mo>⁢<!--INVISIBLE TIMES--></mo>
+      <msup>
+        <mi>c</mi>
+        <mn>2</mn>
+      </msup>
+    <mrow>
   </mlabeledtr>
-</mtable>
+  </mtable>
 </math>

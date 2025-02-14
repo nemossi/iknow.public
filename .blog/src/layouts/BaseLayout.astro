@@ -22,7 +22,7 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
 <html lang={lang} class="scrollbar-hide lenis lenis-smooth scroll-pt-16">
     <head>
         <title>{normalizeTitle}</title>
-        <link rel="stylesheet" href="/src/styles/global.css">
+        <link rel="stylesheet" href=`${SITE.base}styles/global.css`/>
         <BaseHead
             title={normalizeTitle}
             description={description}
@@ -39,7 +39,7 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
              document.documentElement.classList.remove('dark')
          }
         </script>
-        <script is:inline src=`${SITE.url}vendor/lenis/lenis1.1.5O.min.js`></script>
+        <script is:inline src=`${SITE.url}vendor/lenis/lenis1.1.5.min.js`></script>
         <script is:inline>
         const lenis = new Lenis()
         function raf(time) {

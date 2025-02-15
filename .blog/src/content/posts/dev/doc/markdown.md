@@ -156,7 +156,7 @@ remark和markdown-it是两个比较流行的Markdown解析器：
 
 | 其它图表 | 语法 | cmark | gfm | remark |
 | :-- | :-: | :-: | :-: | :-: |
-| `电路图` | - | ❌ | ❌ | `circuitikz` |
+| `tikz图` | - | ❌ | ❌ | `tikzjax` |
 | `dot图` | - | ❌ | ❌ | `remark-graphviz` |
 
 ### 公式

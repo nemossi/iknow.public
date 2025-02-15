@@ -8,6 +8,7 @@ tags: ["dev", "doc", "latex", "tikz"]
 oldViewCount: 0
 oldKeywords: []
 formula: mathjax
+tikz: true
 ---
 
 # TikZ：LaTeX绘图渲染效果样例
@@ -17,95 +18,79 @@ formula: mathjax
 - 支持各种专业图形，如电路图、化学结构式、贝叶斯网络、费曼图等
 - 与LaTeX无缝集成，支持直接嵌入文档
 
-> 很遗憾，现在MathJax还不支持TikZ的渲染（而且看起来可能永远都没法支持）
+很遗憾，现在[MathJax](https://www.mathjax.org/)还不支持TikZ的渲染（而且看起来可能永远都没法支持）。
+
+不过，我们可利用[TikZJax](https://tikzjax.com/)单独渲染TikZ图形（无法内嵌在LaTeX中统一排版），具体实现可参考以下两个项目：
+- [obsidian-tikzjax](https://github.com/artisticat1/obsidian-tikzjax)
+- [hexo-tikzjax](https://github.com/prinsss/hexo-filter-tikzjax/tree/main)
+
+> 尽管暂时还无法完整支持TikZ渲染，但已可创作很多专业图形了
 
 ## 效果展示
 
+### 函数图像
+
+``` tikz
+\begin{document}
+  \begin{tikzpicture}[domain=0:4,scale=1.1]
+    \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+    \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+    \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+    \draw[color=red]    plot (\x,\x)             node[right] {$f(x) =x$};
+    \draw[color=blue]   plot (\x,{sin(\x r)})    node[right] {$f(x) = \sin x$};
+    \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} \mathrm e^x$};
+  \end{tikzpicture}
+\end{document}
+```
+
 ### 电路图
 
-$$
-\documentclass{article}
-\usepackage{tikz}
+``` tikz
 \usepackage{circuitikz}
 \begin{document}
-\begin{figure}[h!]
-  \begin{center}
-    \begin{circuitikz}
-      \draw (0,0)
-      to[V,v=$U_q$] (0,2) % 电压源
-      to[short] (2,2)
-      to[R=$R_1$] (2,0) % 电阻
-      to[short] (0,0);
-    \end{circuitikz}
-    \caption{first circuit.}
-  \end{center}
-\end{figure}
+
+\begin{circuitikz}[american, voltage shift=0.5]
+\draw (0,0)
+to[isource, l=$I_0$, v=$V_0$] (0,3)
+to[short, -*, i=$I_0$] (2,3)
+to[R=$R_1$, i>_=$i_1$] (2,0) -- (0,0);
+\draw (2,3) -- (4,3)
+to[R=$R_2$, i>_=$i_2$]
+(4,0) to[short, -*] (2,0);
+\end{circuitikz}
+
 \end{document}
-$$
+```
 
-### 化学结构式
+### 化学结构式（ChemFig）
 
-$$
-\documentclass{article}
-\usepackage{chemobabel}
+``` tikz
 \usepackage{chemfig}
 \begin{document}
-\noindent Chemfig\\[5mm]
-\chemfig{*6 (-=-=-=)}\\[1cm]
-Chemobabel\\[5mm]
-\smilesobabel{c1ccccc1}{}
+
+\chemfig{[:-90]HN(-[::-45](-[::-45]R)=[::+45]O)>[::+45]*4(-(=O)-N*5(-(<:(=[::-60]O)-[::+60]OH)-(<[::+0])(<:[::-108])-S>)--)}
+
 \end{document}
-$$
+```
 
-### 贝叶斯网络
+### PGF数据图
 
-$$
-\documentclass[tikz,border=0.1cm]{standalone}
-\usepackage{tikz}
-\usetikzlibrary{bayesnet}
-\usepackage{amsmath, amsfonts, amssymb}
-\tikzset{>=latex}
+``` tikz
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
 
 \begin{document}
+
 \begin{tikzpicture}
-\node[circle,draw=black,fill=gray!20,inner sep=0pt,minimum size=0.8cm] (obs) at (2,-1) {\small{$y_{ijt}$}};
-\node[circle,draw=black,fill=green!10] (ui) at (0.8,0) {\small{$\boldsymbol{u}_{i}$}};
-\node[circle,draw=black,fill=green!10] (vj) at (2,1) {\small{$\boldsymbol{v}_{j}$}};
-\node[circle,draw=black,fill=green!10] (xt) at (3.2,0) {\small{$\boldsymbol{x}_{t}$}};
-\node[circle,draw=black,fill=green!10] (tau) at (4.2,-1) {\small{$\tau$}};
-\path[draw=black,->] (ui) edge (obs);
-\path[draw=black,->] (vj) edge (obs);
-\path[draw=black,->] (xt) edge (obs);
-\path[draw=black,->] (tau) edge (obs);
-\node [text width=0.8cm] (m) at (1,-1.2) {\small{$m$}};
-\plate[] {plate1} {(obs)(ui)(m)} { };
-\node [text width=0.9cm] (n) at (2,-2.3) {\small{$n$}};
-\plate[] {plate2} {(obs)(vj)(n)} { };
-\node [text width=0.2cm] (f) at (3.2,-1.3) {\small{$f$}};
-\plate[] {plate3} {(obs)(xt)(f)} { };
-\node[circle,draw=black,fill=red!10,inner sep=0pt,minimum size=0.7cm] (muv) at (1.3,2.2) {\small{$\boldsymbol{\mu}_{v}$}};
-\node[circle,draw=black,fill=red!10,inner sep=0pt,minimum size=0.7cm] (lambdav) at (2.7,2.2) {\small{$\Lambda_{v}$}};
-\node[text width=0.6cm] (gamma) at (4.2,0) {\small{$\alpha,\beta$}};
-\node[text width=0.4cm] (mu0) at (1.3,3.2) {\small{$\boldsymbol{\mu}_{0}$}};
-\node[text width=0.9cm] (wnu0) at (2.7,3.2) {\small{$W_{0},\nu_{0}$}};
-\node[text width=0.6cm] (cdots1) at (0.8,0.8) {\LARGE\color{red!50}{$\cdots$}};
-\node[text width=0.6cm] (cdots2) at (3.2,0.8) {\LARGE\color{red!50}{$\cdots$}};
-\path[draw=black,->] (muv) edge (vj);
-\path[draw=black,->] (lambdav) edge (vj);
-\path[draw=black,->] (lambdav) edge (muv);
-\path[draw=black,->] (mu0) edge (muv);
-\path[draw=black,->] (wnu0) edge (lambdav);
-\path[draw=black,->] (gamma) edge (tau);
+\begin{axis}[colormap/viridis]
+\addplot3[
+	surf,
+	samples=18,
+	domain=-3:3
+]
+{exp(-x^2-y^2)*x};
+\end{axis}
 \end{tikzpicture}
+
 \end{document}
-$$
-
-### 费曼图
-
-$$
-\feynmandiagram [horizontal=a to b] {
-i1 [particle=\(e^{-}\)] -- [fermion] a -- [fermion] i2 [particle=\(e^{+}\)],
-a -- [photon, edge label=\(\gamma\), momentum&#39;=\(k\)] b,
-f1 [particle=\(\mu^{+}\)] -- [fermion] b -- [fermion] f2 [particle=\(\mu^{-}\)],
-};
-$$
+```

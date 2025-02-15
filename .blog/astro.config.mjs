@@ -6,6 +6,7 @@ import remarkMath from 'remark-math';
 import { rehypeShiki } from '@astrojs/markdown-remark'
 import rehypeMermaid from 'rehype-mermaid';
 import rehypeMathDyn from './src/support/rehype-mathdyn.ts';
+import rehypeTikzjax from './src/support/rehype-tikzjax.ts';
 import mdx from '@astrojs/mdx'
 
 import tailwind from '@astrojs/tailwind'
@@ -76,7 +77,7 @@ export default defineConfig
                         },
                     },
                 ],
-
+                rehypeTikzjax,
                 rehypeMathDyn,
                 [
                     rehypeShiki,

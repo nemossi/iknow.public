@@ -42,6 +42,7 @@
     "astro-compressor": "^0.4.1",
     "katex": "^0.16.21",
     "mdast-util-to-string": "^4.0.0",
+    "node-tikzjax": "^1.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reading-time": "^1.5.0",

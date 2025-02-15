@@ -1,6 +1,6 @@
 ---
 title: "Shiki：代码语法高亮"
-description: "让你的技术博客看起来更专业"
+description: "专为技术博客设计，呈现精准、优雅的代码高亮效果"
 pubDate: "2025-02-05 10:01:09"
 category: "dev"
 banner: "@images/banners/banner-dev-doc.jpg"

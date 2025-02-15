@@ -7,12 +7,7 @@ import rehypeMathjax from 'rehype-mathjax';
 import rehypeKatex from 'rehype-katex';
 import katexCssUrl from 'katex/dist/katex.min.css?url';
 
-interface FrontMatter
-{
-    formula?: string;
-}
-
-// 确保inline公式渲染时不换行
+// Force no line-breakings in inline math mode for KaTeX
 const mathjaxCssData =
 `
     mjx-container.MathJax[jax="SVG"],

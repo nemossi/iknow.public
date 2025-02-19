@@ -11,4 +11,4 @@ oldKeywords: []
 
 # Hi, Slidev
 
-[![页面快照](http://free.pagepeeker.com/v2/thumbs.php?size=l&url=https://nemossi.github.io/iknow.public/slides/hi-slidev/)](https://nemossi.github.io/iknow.public/slides/hi-slidev/)
+[![页面快照](https://mini.s-shot.ru/1366x768/JPEG/1366/Z100/?https://nemossi.github.io/iknow.public/slides/hi-slidev/)](https://nemossi.github.io/iknow.public/slides/hi-slidev/)

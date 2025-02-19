@@ -33,6 +33,13 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: '.blog/pnpm-lock.yaml'
 
+      - name: Build slidev (and copy output to astro public)
+        run: |
+          cd .slidev
+          pnpm run build
+          cp -r dist/* ../.astro/public
+          cd ..
+
       # NOTE: `rehype-mermaid` depends on `playwright` with `chrome` browser
       - name: Install Playwright (with Chromium)
         run: |
@@ -45,7 +52,7 @@ jobs:
           node-version: 22
           package-manager: pnpm
           path: .blog
-          build-command: npm run build
+          build-command: pnpm run build
           export-dir: dist
           
   deploy:

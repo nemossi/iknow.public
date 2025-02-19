@@ -36,6 +36,7 @@ jobs:
       - name: Build slidev (and copy output to astro public)
         run: |
           cd .slidev
+          pnpm install
           pnpm run build
           cp -r dist/* ../.astro/public
           cd ..

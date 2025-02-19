@@ -1,5 +1,5 @@
 ---
-title: "TikZ：LaTeX绘图渲染效果样例"
+title: "TikZJax：LaTeX绘图渲染效果样例"
 description: "LaTex绘图工具的使用"
 pubDate: "2025-02-04 23:35:02"
 category: "dev"
@@ -11,7 +11,7 @@ formula: mathjax
 tikz: true
 ---
 
-# TikZ：LaTeX绘图渲染效果样例
+# TikZJax：LaTeX绘图渲染效果样例
 
 [TikZ](https://tikz.dev/)是LaTeX的绘图工具，它的特点是：
 - 语法复杂，但功能强大，生成的图形效果专业、美观
@@ -43,7 +43,7 @@ tikz: true
 \end{document}
 ```
 
-### 电路图
+### circuitikz电路图
 
 ``` tikz
 \usepackage{circuitikz}
@@ -92,5 +92,40 @@ to[R=$R_2$, i>_=$i_2$]
 \end{axis}
 \end{tikzpicture}
 
+\end{document}
+```
+
+### 3D-Plot数据图
+
+``` tikz
+\usepackage{tikz,tikz-3dplot}      
+\begin{document}      
+\tdplotsetmaincoords{70}{110}     
+\begin{tikzpicture}[scale=1.5,tdplot_main_coords]      
+\draw[thick,black,->] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};       
+\draw[thick,black,->] (0,0,0) -- (0,5,0) node[anchor=north west]{$y$};       
+\draw[thick,black,->] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};        
+\draw [blue,fill=blue,opacity=.3,shading=radial] plot [smooth,tension=1]  
+    coordinates{(1,0,1) (0,0,.25) (.5,1.5,.75) (0,2,1.25) (-1,1,1.25) (-.5,-.5,1)};        
+\draw [blue] plot [smooth,tension=1] coordinates{(1,0,1) (0,0,.25) (.5,1.5,.75)    (0,2,1.25) (-1,1,1.25) (-.5,-.5,1)};         
+\end{tikzpicture}        
+\end{document} 
+```
+
+### tikz-cd交换图
+
+``` tikz
+\usepackage{tikz}
+\begin{document}
+\begin{tikzcd}
+T
+\arrow[drr, bend left, "x"]
+\arrow[ddr, bend right, "y"]
+\arrow[dr, dotted, "{(x,y)}"description] & & \\
+& X \times_Z Y \arrow[r, "p"] \arrow[d, "q"]
+& X \arrow[d, "f"] \\
+& Y \arrow[r, "g"]
+& Z
+\end{tikzcd}
 \end{document}
 ```

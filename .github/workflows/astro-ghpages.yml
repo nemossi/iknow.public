@@ -54,15 +54,15 @@ jobs:
           node-version: 22
           package-manager: pnpm
           path: .blog
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .blog/dist
           
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: .blog/dist  # 你的构建产物路径
-        
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4

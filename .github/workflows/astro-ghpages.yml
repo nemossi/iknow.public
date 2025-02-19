@@ -54,8 +54,6 @@ jobs:
           node-version: 22
           package-manager: pnpm
           path: .blog
-          build-command: pnpm run build
-          export-dir: dist
           
   deploy:
     needs: build

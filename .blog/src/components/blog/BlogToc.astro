@@ -18,10 +18,10 @@ const depthToMargin: { [key: number]: string } =
 const filteredHeadings = headings.filter(heading => heading.depth >= 2 && heading.depth <= 4);
 ---
 
-<nav class="p-4 border border-neutral-300 dark:border-neutral-600 rounded">
+<nav class="sticky top-24 max-h-96 overflow-y-auto p-4 border border-neutral-300 dark:border-neutral-600 rounded">
     <h2 class="text-lg font-bold mb-2 text-neutral-800 dark:text-neutral-300">目录</h2>
     <ul class="space-y-1">
-        {headings.map((heading) => (
+        {filteredHeadings.map((heading) => (
         <li class={depthToMargin[heading.depth] ?? 'ml-0'}>
             <a href={`#${heading.slug}`} class="text-sm text-neutral-800 dark:text-neutral-300 hover:underline cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center gap-1">
                 {heading.text}
@@ -31,4 +31,3 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
     </ul>
 </nav>
 
-<!-- 如果需要添加交互功能，比如高亮当前章节，可在这里嵌入相关 JavaScript -->

@@ -37,7 +37,7 @@ entries.forEach((entry) => {
   const entryPath = path.join(BUILD_CONFIG.inputDir, entry);
   const outputPath = path.join(BUILD_CONFIG.outputDir, entry);
 
-  execSync(`pnpm run slidev build --entry="${entryPath}/slides.md" --base="/slides/${entry}/"`);
+  execSync(`pnpm run slidev build --entry="${entryPath}/slides.md" --base="iknow.public/slides/${entry}/"`);
 
   // Dist files can only be generated inside the entry folder,
   // so we move it to the global output directory

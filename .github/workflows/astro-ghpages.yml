@@ -48,18 +48,13 @@ jobs:
           cd .blog
           pnpm dlx playwright install --with-deps chromium
 
-      - name: Install dependencies, build, and export site
+      - name: Install dependencies, build, and upload artifact
         uses: withastro/action@v3
         with:
           node-version: 22
           package-manager: pnpm
           path: .blog
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .blog/dist
-          
   deploy:
     needs: build
     runs-on: ubuntu-latest

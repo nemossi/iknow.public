@@ -40,7 +40,6 @@
     "@types/unist": "^3.0.2",
     "astro": "^5.2.5",
     "astro-compressor": "^0.4.1",
-    "katex": "^0.16.21",
     "mdast-util-to-string": "^4.0.0",
     "node-tikzjax": "^1.0.3",
     "react": "^18.2.0",

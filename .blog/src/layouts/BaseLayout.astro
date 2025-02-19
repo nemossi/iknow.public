@@ -22,7 +22,9 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
 <html lang={lang} class="scrollbar-hide lenis lenis-smooth scroll-pt-16">
     <head>
         <title>{normalizeTitle}</title>
-        <link rel="stylesheet" href=`${SITE.base}styles/global.css`/>
+        <link rel="stylesheet" href=`${SITE.base}styles/global.css` />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
+            integrity="sha384-zh0CIslj+VczCZtlzBcjt5ppRcsAmDnRem7ESsYwWwg3m/OaJ2l4x7YBZl9Kxxib" crossorigin="anonymous" />
         <BaseHead
             title={normalizeTitle}
             description={description}

@@ -14,8 +14,6 @@ formula: "mathjax"
 
 ## 语法
 
-### LaTeX
-
 内联公式`$`...`$`: $E=mc^2$
 
 块级公式`$$`...`$$`:
@@ -28,48 +26,6 @@ $$
 
 ``` math
 E=mc^2
-```
-
-### MathML
-
-块级公式`<math>`...`</math>`:
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mi>x</mi> <mo>=</mo>
-  <mrow>
-    <mfrac>
-      <mrow>
-        <mo>&#x2212;</mo>
-        <mi>b</mi>
-        <mo>&#x00B1;</mo>
-        <msqrt>
-          <msup><mi>b</mi><mn>2</mn></msup>
-          <mo>&#x2212;</mo>
-          <mn>4</mn><mi>a</mi><mi>c</mi>
-        </msqrt>
-      </mrow>
-      <mrow>
-        <mn>2</mn><mi>a</mi>
-      </mrow>
-    </mfrac>
-  </mrow>
-  <mtext>.</mtext>
-</math>
-
-### AsciiMath
-
-内联公式$sum_(i=1)^n i^3=((n(n+1))/2)^2$
-
-块级公式（`$$`...`$$`）：
-
-$$
-sum_(i=1)^n i^3=((n(n+1))/2)^2
-$$
-
-块级公式(`math`代码块)：
-
-``` math
-sum_(i=1)^n i^3=((n(n+1))/2)^2
 ```
 
 ## 效果展示
@@ -201,7 +157,5 @@ $$
 ### mhchem化学式
 
 $$
-\ce{C6H5-CHO}
-\ce{$A$ ->[\ce{+H2O}] $B$}
-\ce{SO4^2- + Ba^2+ -> BaSO4 v}
+\ce{H2O}
 $$

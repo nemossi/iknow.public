@@ -143,3 +143,13 @@ $$
 $$
 \text{ATP} + \text{H}_2\text{O} \rightarrow \text{ADP} + \text{P}_i + \Delta G\,,
 $$
+
+## 高级插件
+
+[KaTeX插件列表](https://katex.org/docs/libs)
+
+### mhchem化学式
+
+$$
+\ce{H2O}
+$$

@@ -3,9 +3,8 @@ import { visit } from 'unist-util-visit';
 
 import type { Element, Root } from 'hast';
 import type { VFile } from 'vfile';
-import rehypeMathjax from 'rehype-mathjax';
 import rehypeKatex from 'rehype-katex';
-import katexCssUrl from 'katex/dist/katex.min.css?url';
+import rehypeMathjax from 'rehype-mathjax';
 
 // Force no line-breakings in inline math mode for KaTeX
 const mathjaxCssData =
@@ -74,14 +73,20 @@ function getOrCreateHead(tree: Root): Element
     return head!;
 }
 
-function injectCssLink(tree: Root, href: string)
+function injectCssLink(tree: Root, href: string, integrity?: string, crossorigin?: string)
 {
     const head = getOrCreateHead(tree);
     const link: Element =
     {
         type: 'element',
         tagName: 'link',
-        properties: { rel: 'stylesheet', href },
+        properties:
+        {
+            rel: 'stylesheet',
+            href,
+            integrity,
+            crossorigin
+        },
         children: []
     };
 
@@ -117,7 +122,13 @@ const rehypeMathDyn: Plugin<[], Root> = function rehypeMathDyn(options: RehypeMa
             katex(tree, file);
             if (options.css)
             {
-                injectCssLink(tree, katexCssUrl);
+                injectCssLink
+                (
+                    tree,
+                    'https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css',
+                    'sha384-zh0CIslj+VczCZtlzBcjt5ppRcsAmDnRem7ESsYwWwg3m/OaJ2l4x7YBZl9Kxxib', 
+                    'anonymous'
+                );
             }
         }
         else if(engine === 'mathjax')

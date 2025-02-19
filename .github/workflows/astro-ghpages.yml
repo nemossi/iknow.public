@@ -38,9 +38,9 @@ jobs:
           cd .slidev
           pnpm install
           pnpm run build
-          cp -r dist/* ../.astro/public
           cd ..
-
+          cp -r .slidev/dist/* .blog/public
+s
       # NOTE: `rehype-mermaid` depends on `playwright` with `chrome` browser
       - name: Install Playwright (with Chromium)
         run: |

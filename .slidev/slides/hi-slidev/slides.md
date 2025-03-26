@@ -1,7 +1,9 @@
 ---
 title: "Hi, Slidev"
 author: "nemossi"
-theme: "default"
+#theme: "default"
+theme: ../../theme
+layout: cover
 ---
 
 # Hi, Slidev
